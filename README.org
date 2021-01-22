@@ -1,0 +1,8 @@
+* Swordfighting
+
+A weird game about swinging your sword.
+
+Some plans for the future:
+- Actual swords.
+- Guys to swing at.
+- Multiplayer.
