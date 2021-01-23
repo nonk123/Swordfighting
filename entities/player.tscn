@@ -1,0 +1,97 @@
+[gd_scene load_steps=5 format=2]
+
+[sub_resource type="CapsuleShape" id=1]
+radius = 0.5
+
+[sub_resource type="CapsuleMesh" id=2]
+radius = 0.5
+
+[sub_resource type="CapsuleShape" id=3]
+radius = 0.1
+height = 0.5
+
+[sub_resource type="CapsuleMesh" id=4]
+radius = 0.1
+mid_height = 0.5
+
+[node name="Player" type="Spatial"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.05072, 0 )
+
+[node name="Body" type="KinematicBody" parent="."]
+
+[node name="Shape" type="CollisionShape" parent="Body"]
+transform = Transform( 1, 0, 0, 0, -1.62921e-07, -1, 0, 1, -1.62921e-07, 0, 0, 0 )
+shape = SubResource( 1 )
+
+[node name="Mesh" type="MeshInstance" parent="Body"]
+transform = Transform( 1, 0, 0, 0, -1.62921e-07, -1, 0, 1, -1.62921e-07, 0, 0, 0 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="LeftArm" type="RigidBody" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.85, 0, 0 )
+
+[node name="Shape" type="CollisionShape" parent="LeftArm"]
+transform = Transform( -1.62921e-07, 0, 1, 0, 1, 0, -1, 0, -1.62921e-07, 0, 0, 0 )
+shape = SubResource( 3 )
+
+[node name="Mesh" type="MeshInstance" parent="LeftArm"]
+transform = Transform( -1.62921e-07, 0, 1, 0, 1, 0, -1, 0, -1.62921e-07, 0, 0, 0 )
+mesh = SubResource( 4 )
+material/0 = null
+
+[node name="LeftForearm" type="RigidBody" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.55, 0, 0 )
+
+[node name="Shape" type="CollisionShape" parent="LeftForearm"]
+transform = Transform( -1.62921e-07, 0, 1, 0, 1, 0, -1, 0, -1.62921e-07, 0, 0, 0 )
+shape = SubResource( 3 )
+
+[node name="Mesh" type="MeshInstance" parent="LeftForearm"]
+transform = Transform( -1.62921e-07, 0, 1, 0, 1, 0, -1, 0, -1.62921e-07, 0, 0, 0 )
+mesh = SubResource( 4 )
+material/0 = null
+
+[node name="RightArm" type="RigidBody" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.85, 0, 0 )
+
+[node name="Shape" type="CollisionShape" parent="RightArm"]
+transform = Transform( -1.62921e-07, 0, 1, 0, 1, 0, -1, 0, -1.62921e-07, 0, 0, 0 )
+shape = SubResource( 3 )
+
+[node name="Mesh" type="MeshInstance" parent="RightArm"]
+transform = Transform( -1.62921e-07, 0, 1, 0, 1, 0, -1, 0, -1.62921e-07, 0, 0, 0 )
+mesh = SubResource( 4 )
+material/0 = null
+
+[node name="RightForearm" type="RigidBody" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.55, 0, 0 )
+
+[node name="Shape" type="CollisionShape" parent="RightForearm"]
+transform = Transform( -1.62921e-07, 0, 1, 0, 1, 0, -1, 0, -1.62921e-07, 0, 0, 0 )
+shape = SubResource( 3 )
+
+[node name="Mesh" type="MeshInstance" parent="RightForearm"]
+transform = Transform( -1.62921e-07, 0, 1, 0, 1, 0, -1, 0, -1.62921e-07, 0, 0, 0 )
+mesh = SubResource( 4 )
+material/0 = null
+
+[node name="LeftShoulder" type="ConeTwistJoint" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0, 0 )
+nodes/node_a = NodePath("../Body")
+nodes/node_b = NodePath("../LeftArm")
+
+[node name="LeftElbow" type="ConeTwistJoint" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2, 0, 0 )
+nodes/node_a = NodePath("../LeftArm")
+nodes/node_b = NodePath("../LeftForearm")
+
+[node name="RightShoulder" type="ConeTwistJoint" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, 0 )
+nodes/node_a = NodePath("../Body")
+nodes/node_b = NodePath("../RightArm")
+
+[node name="RightElbow" type="ConeTwistJoint" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.2, 0, 0 )
+nodes/node_a = NodePath("../RightArm")
+nodes/node_b = NodePath("../RightForearm")
